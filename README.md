@@ -11,7 +11,7 @@ The project is split into three parts:
 
 ## Endpoint URL
 
-http://image-filter-starter-code-dev2222222222222222222.us-east-1.elasticbeanstalk.com
+EB_URL: image-filter-starter-code-dev2222222222222222222.us-east-1.elasticbeanstalk.com
 
 ## Tasks
 
