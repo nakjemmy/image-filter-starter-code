@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { Request, Response } from 'express';
 import bodyParser from 'body-parser';
 import { filterImageFromURL, deleteLocalFiles, getTmpFiles, validateImageUrl } from './util/util';
 
@@ -28,8 +28,8 @@ import { filterImageFromURL, deleteLocalFiles, getTmpFiles, validateImageUrl } f
   //   the filtered image file [!!TIP res.sendFile(filteredpath); might be useful]
 
   /**************************************************************************** */
-  app.get("/filteredimage", async (req, res) => {
-    const image_url = req.query.image_url;
+  app.get("/filteredimage", async (req: Request, res: Response) => {
+    const image_url: string = req.query.image_url;
 
     // validate the image_url query
     if (!validateImageUrl(image_url)) {
@@ -37,7 +37,7 @@ import { filterImageFromURL, deleteLocalFiles, getTmpFiles, validateImageUrl } f
     }
 
     // filter image
-    let filteredPath = await filterImageFromURL(image_url);
+    const filteredPath: string = await filterImageFromURL(image_url);
 
     // Listen to response finish event
     res.on('finish', async () => {
@@ -53,7 +53,7 @@ import { filterImageFromURL, deleteLocalFiles, getTmpFiles, validateImageUrl } f
 
   // Root Endpoint
   // Displays a simple message to the user
-  app.get("/", async (req, res) => {
+  app.get("/", async (req: Request, res: Response) => {
     res.send("try GET /filteredimage?image_url={{}}")
   });
 

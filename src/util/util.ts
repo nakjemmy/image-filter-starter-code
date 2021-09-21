@@ -1,7 +1,7 @@
 import fs from 'fs';
 import Jimp = require('jimp');
 
-export const TMP_DIR = __dirname + "/tmp/";
+export const TMP_DIR: string = __dirname + "/tmp/";
 
 // filterImageFromURL
 // helper function to download, filter, and save the filtered image locally
@@ -13,7 +13,7 @@ export const TMP_DIR = __dirname + "/tmp/";
 export async function filterImageFromURL(inputURL: string): Promise<string> {
     return new Promise(async resolve => {
         const photo = await Jimp.read(inputURL);
-        const outpath = TMP_DIR + '/filtered.' + Math.floor(Math.random() * 2000) + '.jpg';
+        const outpath: string = TMP_DIR + '/filtered.' + Math.floor(Math.random() * 2000) + '.jpg';
         await photo
             .resize(256, 256) // resize
             .quality(60) // set JPEG quality
@@ -37,11 +37,11 @@ export async function deleteLocalFiles(files: Array<string>) {
 
 // getTmpFiles
 // a helper function to get files in tmp directory
-export async function getTmpFiles() {
+export async function getTmpFiles(): Promise<Array<string>> {
     return fs.readdirSync(TMP_DIR).map(fileName => TMP_DIR + fileName);
 }
 
-export function validateImageUrl(url: string) {
+export function validateImageUrl(url: string): boolean {
     return url && (url.match(/\.(jpeg|jpg|gif|png)$/) != null)
 }
 
