@@ -30,14 +30,19 @@ import { filterImageFromURL, deleteLocalFiles, getTmpFiles, validateImageUrl } f
   /**************************************************************************** */
   app.get("/filteredimage", async (req: Request, res: Response) => {
     const image_url: string = req.query.image_url;
-
+    let filteredPath: string;
     // validate the image_url query
     if (!validateImageUrl(image_url)) {
       res.status(400).send("image_url is not valid");
     }
 
-    // filter image
-    const filteredPath: string = await filterImageFromURL(image_url);
+    try {
+      // filter image
+      filteredPath = await filterImageFromURL(image_url);
+    } catch (error) {
+      console.log(error)
+      return res.status(500).send("Ooops! There was an error while processing the image\nTry using a different image URL");
+    }
 
     // Listen to response finish event
     res.on('finish', async () => {
