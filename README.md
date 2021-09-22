@@ -13,6 +13,10 @@ The project is split into three parts:
 
 EB_URL: image-filter-starter-code-dev2222222222222222222.us-east-1.elasticbeanstalk.com
 
+## Github URL
+
+https://github.com/nakjemmy/image-filter-starter-code.git
+
 ## Tasks
 
 ### Setup Node Environment
